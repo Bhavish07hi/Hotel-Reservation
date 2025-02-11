@@ -27,6 +27,10 @@ This project provides a **RESTful API** for hotel reservations. It enables users
 
 ### Hotel APIs
 
+![image](https://github.com/user-attachments/assets/cb224507-8968-441a-a1d5-600c1271c401)
+
+
+
 | Method | Endpoint | Description |
 | ------ | -------- | ----------- |
 | POST   | `/api/v1/hotel` | Create a new hotel. |
@@ -61,29 +65,13 @@ This project provides a **RESTful API** for hotel reservations. It enables users
 }
 ```
 
-#### Example Request: Get Hotels by Availability
-**Endpoint:**
-```
-GET /api/v1/hotels/availabilitySearch?dateFrom=2025-03-01&dateTo=2025-03-10
-```
-**Response:**
-```json
-[
-  {
-    "id": 2,
-    "name": "City Center Suites",
-    "type": "DELUXE",
-    "description": "Conveniently located in the heart of the city.",
-    "availableFrom": "2025-01-01",
-    "availableTo": "2025-12-31",
-    "status": true
-  }
-]
-```
-
 ---
 
 ### Reservation APIs
+
+![image](https://github.com/user-attachments/assets/d51a7e5d-481c-46ed-8bda-a31314e212ff)
+
+
 
 | Method | Endpoint | Description |
 | ------ | -------- | ----------- |
@@ -115,32 +103,7 @@ GET /api/v1/hotels/availabilitySearch?dateFrom=2025-03-01&dateTo=2025-03-10
 }
 ```
 
-#### Example Request: Retrieve All Reservations
-**Endpoint:**
-```
-GET /api/v1/reservations
-```
-**Response:**
-```json
-[
-  {
-    "id": 101,
-    "hotelId": 1,
-    "checkIn": "2025-03-15",
-    "checkOut": "2025-03-20",
-    "guests": 2,
-    "status": true
-  },
-  {
-    "id": 102,
-    "hotelId": 2,
-    "checkIn": "2025-04-01",
-    "checkOut": "2025-04-05",
-    "guests": 3,
-    "status": true
-  }
-]
-```
+
 
 ---
 
@@ -198,7 +161,7 @@ INSERT INTO hotel (name, type, description, availableFrom, availableTo, status) 
 ---
 
 ## Tech Stack
-- **Backend**: Java, Spring Boot, Hibernate, JPA
+- **Backend**: Java 21, Spring Boot 3, Hibernate, JPA
 - **Database**: MySQL (runtime), H2 (testing)
 - **API Documentation**: Swagger UI
 - **Testing**: JUnit 5, Mockito
@@ -208,24 +171,52 @@ INSERT INTO hotel (name, type, description, availableFrom, availableTo, status) 
 
 ## Project Structure
 ```
-hotel-reservation-api/
+marioszocs-spring-boot-hotel-reservation-api/
+├── README.md
+├── mvnw
+├── mvnw.cmd
+├── pom.xml
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── hotelreservation/
-│   │   │           ├── controllers/    # REST controllers
-│   │   │           ├── models/         # Entities and data models
-│   │   │           ├── repositories/   # JPA repositories
-│   │   │           ├── services/       # Business logic
-│   │   │           └── exceptions/     # Custom exception handling
+│   │   │   └── dev/marioszocs/hotelreservationapi/
+│   │   │       ├── HotelReservationApiApplication.java
+│   │   │       ├── ServletInitializer.java
+│   │   │       ├── bootstrap/
+│   │   │       │   └── HotelsAndReservationsLoader.java
+│   │   │       ├── config/
+│   │   │       │   └── OpenApiConfig.java
+│   │   │       ├── constants/
+│   │   │       │   ├── AppConstants.java
+│   │   │       │   └── ErrorMessages.java
+│   │   │       ├── controller/
+│   │   │       │   ├── HotelController.java
+│   │   │       │   └── ReservationController.java
+│   │   │       ├── entity/
+│   │   │       │   ├── Hotel.java
+│   │   │       │   ├── Reservation.java
+│   │   │       │   └── ValidTypesOfHotelsEnum.java
+│   │   │       ├── repository/
+│   │   │       │   ├── HotelRepository.java
+│   │   │       │   └── ReservationRepository.java
+│   │   │       ├── service/
+│   │   │       │   ├── HotelService.java
+│   │   │       │   └── ReservationService.java
+│   │   │       ├── serviceImp/
+│   │   │       │   ├── HotelServiceImp.java
+│   │   │       │   └── ReservationServiceImp.java
+│   │   │       ├── utils/
+│   │   │       │   └── AppUtils.java
+│   │   │       └── validator/
+│   │   │           ├── HotelValidator.java
+│   │   │           └── ReservationValidator.java
 │   │   └── resources/
-│   │       ├── application.properties  # Application configuration
-│   │       └── data.sql                # Sample data for testing
-├── test/
-│   └── java/                           # Unit and integration tests
-├── pom.xml                              # Maven configuration
-└── README.md                            # Documentation
+│   │       ├── application-h2.properties
+│   │       ├── application-mysql.properties
+│   │       └── application.properties
+├── .mvn/
+│   └── wrapper/
+│       └── maven-wrapper.properties
 ```
 
 ---
@@ -246,7 +237,7 @@ hotel-reservation-api/
 ## Installation
 
 ### Prerequisites
-- Java 17+
+- Java 21
 - Maven
 - MySQL (if not using the H2 database)
 
