@@ -7,6 +7,9 @@ import dev.marioszocs.hotelreservationapi.repository.HotelRepository;
 import dev.marioszocs.hotelreservationapi.repository.ReservationRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.logging.Logger;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,19 +18,19 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class HotelsAndReservationsLoader implements CommandLineRunner {
 
-    private final HotelRepository hotelRepository;
-    private final ReservationRepository reservationRepository;
+    private  HotelRepository hotelRepository;
+    private  ReservationRepository reservationRepository;
 
     @Override
     public void run(String... args) throws Exception {
 
         if (hotelRepository.count() == 0) {
-            log.info("Loading data from Hotels...");
+        //    log.info("Loading data from Hotels...");
             loadHotelObject();
         }
 
         if (reservationRepository.count() == 0) {
-            log.info("Loading data from Reservations...");
+     //       log.info("Loading data from Reservations...");
             loadReservationObject();
         }
 
@@ -76,7 +79,7 @@ public class HotelsAndReservationsLoader implements CommandLineRunner {
         reservationRepository.save(r4);
         reservationRepository.save(r5);
 
-        log.info("Loaded Reservations: " + reservationRepository.count());
+      //  log.info("Loaded Reservations: " + reservationRepository.count());
     }
 
     private void loadHotelObject() {

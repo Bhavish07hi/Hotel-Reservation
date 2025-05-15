@@ -12,12 +12,21 @@ import java.io.Serializable;
  * should appear in the tables of the child classes
  */
 @MappedSuperclass
-@Getter
-@Setter
+
 public abstract class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false)
+  
     protected Integer id;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+    
 }

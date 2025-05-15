@@ -24,7 +24,7 @@ public class HotelApiExceptionHandler {
     }
 
     private ResponseEntity<ApiErrorMessage> handleBadRequest(Exception e) {
-        log.error(HttpStatus.BAD_REQUEST.getReasonPhrase(), e); // get full stacktrace
+       // log.error(HttpStatus.BAD_REQUEST.getReasonPhrase(), e); // get full stacktrace
         return new ResponseEntity<>(new ApiErrorMessage(HttpStatus.BAD_REQUEST, e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }

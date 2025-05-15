@@ -25,8 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class ReservationServiceImp implements ReservationService {
-    private final ReservationRepository reservationRepository;
-    private final HotelRepository hotelRepository;
+    private  ReservationRepository reservationRepository;
+    private HotelRepository hotelRepository;
 
     /**
      * Returns all existing Reservation objects in the database
@@ -144,8 +144,8 @@ public class ReservationServiceImp implements ReservationService {
                 try {
                     int checkInBeforeDbCheckOut = sdf.parse(reservations.getCheckIn()).compareTo(sdf.parse(dataBaseRes.getCheckOut()));
                     int checkOutBeforeDbCheckIn = sdf.parse(reservations.getCheckOut()).compareTo(sdf.parse(dataBaseRes.getCheckIn()));
-                    log.debug("check in int " + checkInBeforeDbCheckOut);
-                    log.debug("check out int " + checkOutBeforeDbCheckIn);
+                    //log.debug("check in int " + checkInBeforeDbCheckOut);
+                    //log.debug("check out int " + checkOutBeforeDbCheckIn);
                     if (checkInBeforeDbCheckOut == 0 || checkOutBeforeDbCheckIn == 0) {
                         return true;
                     } else {

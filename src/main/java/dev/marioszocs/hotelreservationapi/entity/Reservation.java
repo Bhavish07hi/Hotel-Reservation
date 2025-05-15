@@ -9,8 +9,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
 
-@Getter
-@Setter
+
 @Entity
 @Builder
 @NoArgsConstructor
@@ -34,5 +33,48 @@ public class Reservation extends AuditableEntity {
 
     @Column
     private boolean status;
+
+	public Integer getHotelId() {
+		return hotelId;
+	}
+
+	public void setHotelId(Integer hotelId) {
+		this.hotelId = hotelId;
+	}
+
+	public String getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public String getCheckOut() {
+		return checkOut;
+	}
+
+	public void setCheckOut(String checkOut) {
+		this.checkOut = checkOut;
+	}
+
+	public Integer getGuests() {
+		return guests;
+	}
+
+	public void setGuests(Integer guests) {
+		this.guests = guests;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	
+	
 
 }

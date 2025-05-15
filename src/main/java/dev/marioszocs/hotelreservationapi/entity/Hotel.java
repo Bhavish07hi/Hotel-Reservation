@@ -15,14 +15,63 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Builder
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "hotel")
 public class Hotel extends AuditableEntity {
 
-    @NotBlank(message = "Hotel name is mandatory")
+    private static final long serialVersionUID = 1L;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ValidTypesOfHotelsEnum getType() {
+		return type;
+	}
+
+	public void setType(ValidTypesOfHotelsEnum type) {
+		this.type = type;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getAvailableFrom() {
+		return availableFrom;
+	}
+
+	public void setAvailableFrom(String availableFrom) {
+		this.availableFrom = availableFrom;
+	}
+
+	public String getAvailableTo() {
+		return availableTo;
+	}
+
+	public void setAvailableTo(String availableTo) {
+		this.availableTo = availableTo;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	@NotBlank(message = "Hotel name is mandatory")
     @Size(min = 3, max = 40, message = "Name must be at least 3 characters long")
     @Column()
     private String name;

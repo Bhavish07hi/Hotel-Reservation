@@ -42,7 +42,7 @@ public class HotelValidator extends BaseValidator {
      */
     public static void validateName(String name) {
         if (!StringUtils.hasText(name)) {
-            log.error("Hotel name cannot be null...");
+       //     log.error("Hotel name cannot be null...");
             throw new InvalidRequestException(ErrorMessages.INVALID_NAME);
         }
     }
@@ -54,7 +54,7 @@ public class HotelValidator extends BaseValidator {
      */
     public static void validateType(ValidTypesOfHotelsEnum type) {
         if (type == null || !Arrays.asList("DELUXE", "LUXURY", "SUITE").contains(type.toString())) {
-            log.error("The type parameter: '{}' is invalid, must be one of the following [DELUXE, LUXURY, SUITE]", type);
+         //   log.error("The type parameter: '{}' is invalid, must be one of the following [DELUXE, LUXURY, SUITE]", type);
             throw new InvalidRequestException(ErrorMessages.INVALID_TYPE);
         }
     }

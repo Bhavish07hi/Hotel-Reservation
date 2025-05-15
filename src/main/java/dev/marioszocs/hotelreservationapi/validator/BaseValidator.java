@@ -41,7 +41,7 @@ public class BaseValidator {
         try {
             simpleDateFormat.parse(date);
         } catch (ParseException e) {
-            log.error("Invalid date format: '{}', please input dates in 'yyyy-MM-dd' format.", date);
+           // log.error("Invalid date format: '{}', please input dates in 'yyyy-MM-dd' format.", date);
             throw new InvalidRequestException(INVALID_DATE);
             // return false;
         }
@@ -62,14 +62,14 @@ public class BaseValidator {
         if (validateDateFormat(startDate) && validateDateFormat(endDate)) {
             try {
                 if (simpleDateFormat.parse(startDate).after(simpleDateFormat.parse(endDate))) {
-                    log.error("Start date: '{}' mus be before end date: '{}'.", startDate, endDate);
+                //    log.error("Start date: '{}' mus be before end date: '{}'.", startDate, endDate);
                     throw new InvalidRequestException(INVALID_DATE_ORDER);
                 }
             } catch (ParseException e) {
-                log.debug("Invalid date comparison.");
+            //    log.debug("Invalid date comparison.");
             }
         } else {
-            log.error("Invalid date: Please input dates in 'yyyy-MM-dd' format.");
+         //   log.error("Invalid date: Please input dates in 'yyyy-MM-dd' format.");
             throw new InvalidRequestException(INVALID_DATE);
         }
     }

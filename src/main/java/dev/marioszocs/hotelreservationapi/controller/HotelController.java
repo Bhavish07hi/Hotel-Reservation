@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Hotel Controller containing endpoints of Hotel related API calls
@@ -24,8 +25,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 public class HotelController {
-    private final HotelService hotelService;
-
+    private  HotelService hotelService;
+    Logger log;
     /**
      * End point to get all Hotels in the database
      *
@@ -33,7 +34,7 @@ public class HotelController {
      */
     @GetMapping(value = "/hotels", produces = "application/json")
     public ResponseEntity<List<Hotel>> getHotelList(){
-        log.info("Get all: {} hotels from database", hotelService.getAllHotels().size());
+       // log.info("Get all: {} hotels from database", hotelService.getAllHotels().size());
         return ResponseEntity.ok(hotelService.getAllHotels());
     }
 
@@ -54,7 +55,7 @@ public class HotelController {
         PageNumberAndSizeValidator.validatePageNumberAndSize(pageNumber, pageSize);
         List<Hotel> hotelPagedList = hotelService.getHotelPagedList(pageNumber, pageSize, sortBy);
 
-        log.info("Return Hotel paged list with pageNumber: {}, pageSize: {} and sortBy: {}.", pageNumber, pageSize, sortBy);
+      // log.info("Return Hotel paged list with pageNumber: {}, pageSize: {} and sortBy: {}.", pageNumber, pageSize, sortBy);
 
         return new ResponseEntity<>(hotelPagedList, HttpStatus.OK);
     }
@@ -68,7 +69,7 @@ public class HotelController {
     @GetMapping(value = "/hotel/{id}", produces = "application/json")
     public Hotel getHotel(@PathVariable Integer id) {
         HotelValidator.validateId(id);
-        log.info("Get hotel by id = {}", id);
+     //   log.info("Get hotel by id = {}", id);
         return hotelService.getHotel(id);
     }
 
@@ -82,7 +83,7 @@ public class HotelController {
     @GetMapping(value = "/hotels/availabilitySearch", produces = "application/json")
     public List<Hotel> getHotel(@RequestParam("dateFrom") String from, @RequestParam("dateTo") String to){
         HotelValidator.validateDates(from, to);
-        log.info("Get all Hotels available between dates from: {} to: {}", from, to);
+      //  log.info("Get all Hotels available between dates from: {} to: {}", from, to);
         return hotelService.getAvailable(from, to);
     }
 
@@ -95,7 +96,7 @@ public class HotelController {
     @PatchMapping(value = "/hotel", produces = "application/json")
     public SuccessEntity patchHotel(@RequestBody @Valid Hotel hotel){
         HotelValidator.validateHotelPATCH(hotel);
-        log.info("Update Hotel with name: {}", hotel.getName());
+      //  log.info("Update Hotel with name: {}", hotel.getName());
         return hotelService.patchHotel(hotel);
     }
 
@@ -108,7 +109,7 @@ public class HotelController {
     @PostMapping(value = "/hotel", produces = "application/json")
     public IdEntity saveHotel(@RequestBody @Valid Hotel hotel){
         HotelValidator.validateHotelPOST(hotel);
-        log.info("Save a user specified hotel with name: {}", hotel.getName());
+       // log.info("Save a user specified hotel with name: {}", hotel.getName());
         return hotelService.saveHotel(hotel);
     }
 
@@ -121,7 +122,7 @@ public class HotelController {
     @DeleteMapping(value = "/hotel/{id}", produces = "application/json")
     public SuccessEntity deleteHotel(@PathVariable Integer id){
         HotelValidator.validateId(id);
-        log.info("Delete a user specified hotel with id = {}", id);
+      //  log.info("Delete a user specified hotel with id = {}", id);
         return hotelService.deleteHotel(id);
     }
 }

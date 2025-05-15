@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 public class ReservationController {
-    private final ReservationService reservationService;
+    private  ReservationService reservationService;
 
     /**
      * End point to get all reservations.
@@ -28,7 +28,7 @@ public class ReservationController {
      */
     @GetMapping(value = "/reservations", produces = "application/json")
     public List<Reservation> getReservationList(){
-        log.info("Get all reservations...");
+        //log.info("Get all reservations...");
         return reservationService.getAllReservations();
     }
     //jUnit, integrationtest, mockito, hibernate, lombok, jpa, swagger
@@ -41,7 +41,7 @@ public class ReservationController {
     @GetMapping(value = "/reservation/{id}", produces = "application/json")
     public Reservation getReservation(@PathVariable Integer id){
         ReservationValidator.validateId(id);
-        log.info("Get a user specified reservation with id = {}", id);
+       // log.info("Get a user specified reservation with id = {}", id);
         return reservationService.getReservation(id);
     }
 
@@ -54,7 +54,7 @@ public class ReservationController {
     @PostMapping(value = "/reservation", produces = "application/json")
     public IdEntity saveReservation(@RequestBody Reservation reservation){
         ReservationValidator.validateReservationPOST(reservation);
-        log.info("Save a user specified reservation...");
+       // log.info("Save a user specified reservation...");
         return reservationService.saveReservation(reservation);
     }
 
@@ -67,7 +67,7 @@ public class ReservationController {
     @DeleteMapping(value = "/reservation/{id}", produces = "application/json")
     public SuccessEntity deleteReservation(@PathVariable Integer id){
         ReservationValidator.validateId(id);
-        log.info("Delete a user specified reservation...");
+       // log.info("Delete a user specified reservation...");
         return reservationService.deleteReservation(id);
     }
 }
