@@ -10,6 +10,8 @@ import dev.marioszocs.hotelreservationapi.repository.ReservationRepository;
 import dev.marioszocs.hotelreservationapi.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -25,7 +27,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class ReservationServiceImp implements ReservationService {
+	@Autowired
     private  ReservationRepository reservationRepository;
+	
+	@Autowired
     private HotelRepository hotelRepository;
 
     /**

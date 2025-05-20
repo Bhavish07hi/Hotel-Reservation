@@ -7,6 +7,9 @@ import dev.marioszocs.hotelreservationapi.entity.Hotel;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface HotelService {
 
     List<Hotel> getHotelPagedList(Integer pageNo, Integer pageSize, String sortBy); // Pagination

@@ -6,6 +6,9 @@ import dev.marioszocs.hotelreservationapi.entity.Reservation;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface ReservationService {
     List<Reservation> getAllReservations();
     Reservation getReservation(Integer id);

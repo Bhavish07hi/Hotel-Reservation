@@ -17,7 +17,9 @@ import jakarta.validation.constraints.Min;
 @Table(name = "reservation")
 public class Reservation extends AuditableEntity {
 
-    @Column(name = "hotel_id", nullable = false)
+    private static final long serialVersionUID = 1L;
+
+	@Column(name = "hotel_id", nullable = false)
     private Integer hotelId;
 
     @Column(name = "check_in", nullable = false)
